@@ -9,6 +9,7 @@ const SearchComponent = ({ records }) => {
       .filter(
         (record) =>
           record.question.toLowerCase().includes(query.toLowerCase()) ||
+          record.date.toLowerCase().includes(query.toLowerCase()) ||
           record.answer.toLowerCase().includes(query.toLowerCase())
       )
       .slice(0, 100); // Limiting to 100 records
@@ -22,15 +23,9 @@ const SearchComponent = ({ records }) => {
           type="text"
           className="border-2 border-gray-300 p-2 rounded-md flex-grow"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => handleSearch(setQuery(e.target.value))}
           placeholder="Search..."
         />
-        <button
-          className="bg-blue-500 text-white p-2 rounded-md"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
       </div>
 
       <div className="overflow-x-auto">
